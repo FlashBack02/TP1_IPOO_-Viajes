@@ -86,8 +86,34 @@ while($res != 8){
             agregrarMultiplesPasajeros($nroPasajerosAIngresar);
         break;
         case 2:
-            $nroPasajerosAIngresar = $cantMaxDePasajerosViaje;
-            agregrarMultiplesPasajeros($nroPasajerosAIngresar);
+            for ($i=1; $i <= $cantMaxDePasajerosViaje; $i++) {
+                $resultadoAgregar = -1;
+                while ($resultadoAgregar == -1) {
+                    echo "Ingrese el nombre del pasajero/a nº" . $i . ":\n";
+                    $nombrePasajero = trim(fgets(STDIN));
+                    echo "Ingrese el apellido del pasajero/a nº" . $i . ":\n";
+                    $apellidoPasajero = trim(fgets(STDIN));
+                    echo "Ingrese el DNI del pasajero nº" . $i . ":\n";
+                    $dniPasajero = trim(fgets(STDIN));
+                    echo "Ingrese el TELEFONO del pasajero nº" . $i . ":\n";
+                    $telefonoPasajero = trim(fgets(STDIN)); 
+            
+                    $objPasajero = new Pasajero($nombrePasajero, $apellidoPasajero, $dniPasajero, $telefonoPasajero);
+                    
+                    $resultadoAgregar = $objViaje->agregarPasajero($objPasajero);
+                    
+                    if ($resultadoAgregar == 1) {
+                        echo "Pasajero agregado con éxito.\n";
+                        // Si el pasajero se agregó con éxito, sale del bucle while.
+                    } elseif ($resultadoAgregar == -1) {
+                        echo "El pasajero con DNI " . $dniPasajero . " ya está incluido en el viaje. Por favor, ingrese otro pasajero.\n";
+                        // Si el pasajero ya está incluido, el bucle while se repetirá solicitando un nuevo pasajero.
+                    } else {
+                        echo "No se pudo agregar el pasajero. El viaje está completo.\n";
+                        break; // Sale del bucle for si el viaje ya está completo.
+                    }
+                }
+            }
         break;
         case 3:
             $resultadoAgregar = -1;
@@ -128,16 +154,16 @@ while($res != 8){
             echo "\nModificar datos del responsable del viaje:\n";
             // Solicitar los nuevos datos al usuario
             echo "Ingrese el nuevo nombre del responsable: ";
-            $nuevoNombreResponsable = trim(fgets(STDIN));
+            $nuevoNombre = trim(fgets(STDIN));
             echo "Ingrese el nuevo apellido del responsable: ";
-            $nuevoApellidoResponsable = trim(fgets(STDIN));
+            $nuevoApellido = trim(fgets(STDIN));
             echo "Ingrese el nuevo número de empleado del responsable: ";
-            $nuevoNumeroEmpleadoResponsable = trim(fgets(STDIN));
+            $nuevoNumeroEmpleado = trim(fgets(STDIN));
             echo "Ingrese la nueva licencia del responsable: ";
-            $nuevaLicenciaResponsable = trim(fgets(STDIN));
+            $nuevaLicencia = trim(fgets(STDIN));
         
             // Obtener el objeto ResponsableV actual del viaje
-            $responsableActual= new esponsableV($nuevoNumeroEmpleadoResponsable, $nuevaLicenciaResponsable, $nuevoNombreResponsable, $nuevoApellidoResponsable);
+            $responsableActual= new 
             $objViaje->setObjResponsableV( $responsableActual);
         break;
         case 7: 
