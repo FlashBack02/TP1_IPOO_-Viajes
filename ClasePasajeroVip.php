@@ -1,5 +1,5 @@
 <?php
-include 'ClasePasajero.php';
+
 class PasajeroVip extends Pasajero{
    //La clase "PasajeroVIP" tiene como atributos adicionales 
    //el número de viajero frecuente y cantidad de millas de pasajero

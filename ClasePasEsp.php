@@ -1,5 +1,5 @@
 <?php
-include 'ClasePasajero.php';
+
 class PasajeroNecEsp extends Pasajero{
    //a clase Pasajeros con necesidades especiales se refiere a pasajeros 
    //que pueden requerir servicios especiales como sillas de ruedas, asistencia
